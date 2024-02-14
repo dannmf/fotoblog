@@ -10,11 +10,12 @@
 :root {
     font-family: 'Mulish',sans-serif;
     font-size: 62.5%;
-    --color-base-white: #ffffff;
-    --color-base-gray-100: #f5f5f5;
-    --color-base-gray-500: #3D3D3D;
-    --color-base-gray-900: #202024;
-    --color-base-gray-300: #8d8d99
+    --hue: 270;
+    --color-base-white: hsl(0, 0%, 100%);
+    --color-base-gray-100: hsl(0, 0%, 96%);
+    --color-base-gray-300: hsl(var(--hue), 60%, 58%);
+    --color-base-gray-500: hsl(0, 0%, 24%);
+    --color-base-gray-900: hsl(var(--hue), 60%, 50%);
 
 }
 
@@ -45,6 +46,7 @@ main {
     width: min(112rem, 100%);
     margin: 0 auto;
 }
+
 
 
 header, nav, nav ul {
@@ -122,6 +124,11 @@ main h1 {
     width: 100%;
     aspect-ratio: 16/9;
     object-fit: cover;
+    display: block;
+}
+
+.item img:hover {
+    filter: hue-rotate(7deg) contrast(101%) saturate(200%) 
 }
 
 .details {
@@ -153,3 +160,36 @@ footer p {
     font-weight: 600;
 }
 
+header {
+    --startY: -100%;
+    animation: move .2s;
+}
+
+footer {
+    --startY: 100%;
+    animation: move .2s;
+}
+
+@keyframes move {
+    from {
+        transform: translateY(var(--startY));
+    }
+}
+
+.item {
+    --delay: .4s;
+    animation: appear .4s var(--delay) backwards;
+}
+
+@keyframes appear {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+    
+}
